@@ -22,6 +22,13 @@
             <td>{{ $student->email }}</td>
             <td>
                 <a class="btn btn-warning" href="{{ route('student.edit', $student->id) }}">Edit</a>
+                <form method="POST" action="{{ route('student.destroy', $student->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger">DELETE</button>
+                </form>
+                <a class="btn btn-warning" href="{{ route('student.show', $student->id) }}">Show</a>
+
             </td>
         </tr>
         @endforeach

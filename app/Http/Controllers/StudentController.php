@@ -65,7 +65,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('student.show', compact($student));
     }
 
     /**
@@ -115,6 +115,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+//        $data = Student::find($student->id);
+//        $data->delete();
+        $student->delete();
+        return redirect('student')->with('success', 'Student Deleted Successfully');
     }
 }
