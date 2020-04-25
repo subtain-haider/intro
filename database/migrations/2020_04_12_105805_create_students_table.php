@@ -14,12 +14,17 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name');
             $table->string('cnic')->default('1111111111');
             $table->string('father_name');
             $table->string('email');
-            $table->string('Password');
+            $table->string('password');
+            $table->string('image');
+
+            $table->integer('classroom_id')->unsigned()->nullable();
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
+
             $table->timestamps();
 
         });

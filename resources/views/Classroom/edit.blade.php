@@ -4,20 +4,19 @@
 
 @section('main')
 
-    @if($message = Session::get('success'))
-        <p>{{ $message }}</p>
-    @endif
+
     <div align="right">
         <a href="{{ route('student.index') }}" class="btn btn-default">Back</a>
     </div>
 
-    <form method="post" action="{{ route('student.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('student.update', $student->id) }}" enctype="multipart/form-data">
 
         @csrf
+        @method('PATCH')
         <div class="form-group">
             <label class="col-md-4 text-right">Enter Name</label>
             <div class="col-md-8">
-                <input type="text" name="name" class="form-control input-lg" />
+                <input type="text" name="name" value="{{ $student->name }}" class="form-control input-lg" />
             </div>
         </div>
         <br />
@@ -26,7 +25,7 @@
         <div class="form-group">
             <label class="col-md-4 text-right">Enter Father Name</label>
             <div class="col-md-8">
-                <input type="text" name="father_name" class="form-control input-lg" />
+                <input type="text" name="father_name" value="{{ $student->father_name }}" class="form-control input-lg" />
             </div>
         </div>
         <br />
@@ -35,7 +34,7 @@
         <div class="form-group">
             <label class="col-md-4 text-right">Enter Email Address</label>
             <div class="col-md-8">
-                <input type="text" name="email" class="form-control input-lg" />
+                <input type="text" name="email" value="{{ $student->email }}" class="form-control input-lg" />
             </div>
         </div>
         <br />
@@ -44,20 +43,7 @@
         <div class="form-group">
             <label class="col-md-4 text-right">Password</label>
             <div class="col-md-8">
-                <input type="text" name="password" class="form-control input-lg" />
-            </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <div class="form-group">
-            <label class="col-md-4 text-right">Classroom</label>
-            <div class="col-md-8">
-                <select name="classroom_id" id="" class="form-control input-lg">
-                    @foreach($classrooms as $classroom)
-                        <option value="{{$classroom->id}}">{{$classroom->name}}</option>
-                        @endforeach
-                </select>
+                <input type="text" name="password" value="{{ $student->password }}" class="form-control input-lg" />
             </div>
         </div>
         <br />

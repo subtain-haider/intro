@@ -7,7 +7,7 @@
     </div>
 
     <img src="" alt="">
-    First Name: {{ $student_data->name }}
+    First Name:
 
 {{--    <table class="table table-bordered table-striped">--}}
 {{--        <tr>--}}

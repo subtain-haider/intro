@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\classroom;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,8 @@ class StudentController extends Controller
     {
         $student = new Student();
         $students = $student->all();
+
+
         return view('student.index', compact('students'));
 
     }
@@ -28,7 +31,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.create');
+        $classrooms = new classroom();
+        $classrooms = $classrooms->all();
+        return view('student.create', compact('classrooms'));
     }
 
     /**
@@ -45,6 +50,7 @@ class StudentController extends Controller
 
         $data = array(
             'name' => $request->name,
+            'classroom_id' => $request->classroom_id,
             'father_name' => $request->father_name,
             'email' => $request->email,
             'password' => $request->password,
@@ -54,7 +60,7 @@ class StudentController extends Controller
 
         $student->create($data);
 
-        return redirect('student/index')->with('success', 'Student Added Successfully');
+        return redirect('student')->with('success', 'Student Added Successfully');
     }
 
     /**
@@ -65,7 +71,11 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('student.show', compact($student));
+
+        dd($student->classroom->code);
+
+        $student_data = Student::find($student->id);
+        return view('student.show', compact('student_data'));
     }
 
     /**
