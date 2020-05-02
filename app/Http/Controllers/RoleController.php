@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\classroom;
+use App\Role;
 use Illuminate\Http\Request;
 
-class ClassroomController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $classroom = new classroom();
-        $classrooms = $classroom->all();
-        return view('classroom.index', compact('classrooms'));
+        $role = new Role();
+        $roles = $role->all();
+        return view('role.index', compact('roles'));
     }
 
     /**
@@ -31,7 +26,7 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        return view('classroom.create');
+        return view('role.create');
     }
 
     /**
@@ -42,24 +37,16 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        $data = array(
-            'name' => $request->name,
-            'code' => $request->code,
-        );
-        $classroom = new classroom();
-
-        $classroom->create($data);
-
-        return redirect('classroom')->with('success', 'Classroom Added Successfully');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\classroom  $classroom
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(classroom $classroom)
+    public function show(Role $role)
     {
         //
     }
@@ -67,10 +54,10 @@ class ClassroomController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\classroom  $classroom
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(classroom $classroom)
+    public function edit(Role $role)
     {
         //
     }
@@ -79,10 +66,10 @@ class ClassroomController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\classroom  $classroom
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, classroom $classroom)
+    public function update(Request $request, Role $role)
     {
         //
     }
@@ -90,10 +77,10 @@ class ClassroomController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\classroom  $classroom
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(classroom $classroom)
+    public function destroy(Role $role)
     {
         //
     }
