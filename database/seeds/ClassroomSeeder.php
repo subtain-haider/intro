@@ -25,8 +25,6 @@ class ClassroomSeeder extends Seeder
                 'code' => '11th',
                 'name' => 'First Year',
             ],
-
-
         ]);
     }
 }
