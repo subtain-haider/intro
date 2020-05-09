@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\classroom;
+use App\Mail\StudentMail;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -53,6 +55,15 @@ class StudentController extends Controller
         $temp_name = rand(). '.' . $image->getClientOriginalExtension();
         $image->move(public_path('images'), $temp_name);
 
+
+//        Mail::to('student@student.com')->send(new StudentMail());
+
+//        $students = Student::where('classroom_id',$request->classroom_id)->get(); //15
+//        $code = Classroom::where('classroom_id', $request->classroom_id)->pluck('code'); // 11ICSA
+//
+//        $rollnum = $code . $students; // 11ICSA15
+
+
         $data = array(
             'name' => $request->name,
             'classroom_id' => $request->classroom_id,
@@ -61,6 +72,9 @@ class StudentController extends Controller
             'password' => $request->password,
             'image' => $temp_name,
         );
+
+        Mail::to($request->email)->send(new StudentMail($data));
+
         $student = new Student();
 
         $student->create($data);
